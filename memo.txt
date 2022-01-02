@@ -1,0 +1,71 @@
+jsx上で数式、javascriptを書くときは{}を使う
+
+デフォでは全てflexDirection: "colum"
+
+props　親から子コンポーネントに渡すもの。普遍のもの。（this.human: male）
+
+state 可変のもの。(this.human: hungry)
+
+StyleSheetの設定について
+{
+    flex　余っているスペースを目一杯使う時に使う
+
+    alignItems　flexDirectionの方向に対して調整する
+
+    justifyContent　flexDirectionの方向に対して寄せる、並べる
+}
+
+propsの渡し方について
+{
+    渡す側
+        jsxでコンポーネントを挿入しているところで　変数1= 変数2= で渡す
+
+    受ける側
+        exportするconstの部分で変数をthisで受ける
+            const Foo = ({ 変数1, 変数2 }) => {}
+        jsx内では{変数1}で使用する
+}
+
+useStateについて
+{
+    const [stateの”変数”, 左の変数を更新する”関数”] = useState(初期値)
+
+    ”関数”について値を代入したら”変数”は連動して更新される
+}
+
+useEffectについて
+{
+    レンダーの結果が画面に反映された後に動作
+
+    第 2 引数にプロパティを指定して、そのプロパティが変化した場合のみ実行させることも可能
+
+    第 2 引数に殻の配列を渡した場合はマウント時に実行される。デバックに使えるね。
+}
+
+react nativeでのapi定義場所について
+{
+    app.jsonで "extra": {"aaa": "foo"} のように好きなパラメータ(今回はapi)を定義でき、アプリで呼び出せる
+
+    expo-constantsでアプリ内から呼び出す
+
+    でもgithubに上げたい時は。。。
+    {
+        yarn add -D react-native-dotenv
+
+        babel.config.jsを修正
+
+        .envを作成し、そこにAPIKeyを記入
+
+        .gitignoreに.envを追加
+
+        import { API_KEY } from '@env'
+
+        再起動
+    }
+
+}
+
+jsxでのtrue false判定
+{
+    {!! 判定式}で実装
+}
