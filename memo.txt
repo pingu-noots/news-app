@@ -21,7 +21,7 @@ propsの渡し方について
         jsxでコンポーネントを挿入しているところで　変数1= 変数2= で渡す
 
     受ける側
-        exportするconstの部分で変数をthisで受ける
+        exportするconstの部分で変数をthisで受けるイメージ
             const Foo = ({ 変数1, 変数2 }) => {}
         jsx内では{変数1}で使用する
 }
@@ -31,6 +31,8 @@ useStateについて
     const [stateの”変数”, 左の変数を更新する”関数”] = useState(初期値)
 
     ”関数”について値を代入したら”変数”は連動して更新される
+
+    class記述の componentDidMount() に相当する
 }
 
 useEffectについて
@@ -69,3 +71,35 @@ jsxでのtrue false判定
 {
     {!! 判定式}で実装
 }
+
+rnfでreactのデフォ呼び出し
+
+
+タップ時の画面遷移の実装方法
+{
+    親コンポーネントに
+        const Stack = createNativeStackNavigator()定義
+        <NavigationContainer>をjsxに入れる
+        <Stack.Navigator>内で
+            <Stack.Screen name="Article" component={AriticleScreen} />のように子コンポーネントをスタックさせていく
+        https://reactnavigation.org/docs/native-stack-navigator/
+
+    タップ対象の孫コンポーネントに
+        コンポーネント全体を<TouchableOpacity>にする
+
+    孫コンポーネントがある子コンポーネントに
+        export default foo = ({navigation}) でpropsを受け取る
+        onPress={() => navigation.navigate('Article', { article: item })}で処理を実装
+        navigate()の第一引数は親コンポーネントにstackさせた時のname、第二引数は{ props名: 対象}
+
+    遷移先子コンポーネントに
+        export default foo = ({props名}})でprops名を受け取る
+        好きに対象を使う
+}
+
+画面遷移の構成方法
+
+
+
+
+remoteとlocalのgitの紐付け　git remote add origin URL
